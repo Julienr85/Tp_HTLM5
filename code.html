@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head>
+  <body>
+
+      <p id="demo">Click the button to get your coordinates:</p>
+      <button onclick="getInformation()">Try It</button>
+      <button onclick="resetInformation()">reset</button>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      var x=document.getElementById("demo");
+      function resetInformation() {
+                x.innerHTML="Latitude: <br/>Longitude: <br/>Date / Heure: ";
+      }
+      function getInformation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showInformation);
+        }
+        else {
+          x.innerHTML="Geolocation is not supported by this browser.";
+        }
+        }
+        function showInformation(position) {
+          date = new Date;
+          annee = date.getFullYear();
+          moi = date.getMonth();
+          mois = new Array('Janvier', 'F&eacute;vrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao&ucirc;t', 'Septembre', 'Octobre', 'Novembre', 'D&eacute;cembre');
+          j = date.getDate();
+          jour = date.getDay();
+          jours = new Array('Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi');
+          h = date.getHours();
+          if(h<10)
+          {
+                  h = "0"+h;
+          }
+          m = date.getMinutes();
+          if(m<10)
+          {
+                  m = "0"+m;
+          }
+          s = date.getSeconds();
+          if(s<10)
+          {
+                  s = "0"+s;
+          }
+
+          date_now = jours[jour]+' '+j+' '+mois[moi]+' '+annee+' - '+h+':'+m+':'+s;
+
+          x.innerHTML="Latitude: " + position.coords.latitude + "<br/>Longitude: " + position.coords.longitude + "<br/>Date / Heure: " + date_now;
+        }
+      </script>
+  </body>
+</html>
