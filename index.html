@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Fumeron & Robert</title>
 
     <!-- Bootstrap -->
@@ -19,148 +18,60 @@
 	</header>
 
     <div class="container">
-		<!-- Affichage des informations de localisation et date -->
     	<div class="col-md-5 col-md-offset-3">
+
+        <!-- Affichage de la vidéo -->
     		<div class="row">
-    		    <div class="embed-responsive embed-responsive-16by9">
-    				<br/><h1></h1><br/>
-   		   			<canvas id="myCanvas"></canvas>  
+    		    <div class="embed-responsive embed-responsive-16by9" id="streamvideo">
+              <video id="myVideo" autoplay="" class="hidden"></video>
+   		   			<canvas id="myCanvas"></canvas>
    		   		</div>
     		</div>
+
+    		<!-- Affichage des informations de localisation et date -->
     		<div class="row">
     			<label for="informations"></label>
 				<div class="input-group">
  					 <span class="input-group-addon" id="basic-addon3">Latitude</span>
-  			 		 <input type="text"  disabled class="form-control" id="Latitude" aria-describedby="basic-addon3">
+  			 	 <input type="text"  disabled class="form-control" id="Latitude" aria-describedby="basic-addon3">
 				</div>
 				<div class="input-group">
  					 <span class="input-group-addon" id="basic-addon3">Longitude</span>
-  			 		 <input type="text"  disabled class="form-control" id="Longitude" aria-describedby="basic-addon3">
+  			 	 <input type="text"  disabled class="form-control" id="Longitude" aria-describedby="basic-addon3">
 				</div>
 				<div class="input-group">
  					 <span class="input-group-addon" id="basic-addon3">Date/Heure</span>
-  			 	 	 <input type="text" disabled class="form-control" id="Date" aria-describedby="basic-addon3">
+  			 	 <input type="text" disabled class="form-control" id="Date" aria-describedby="basic-addon3">
 				</div>
 		 	</div>
+
+      <!-- Les boutons -->
 			<div class="row">
-				<label></label>
 				<div class="btn-group btn-group-justified" role="group" aria-label="...">
   				<div class="btn-group" role="group">
-   					 <button type="button" class="btn btn-default" onclick="savePicture()">Save</button>
+   					 <button id="save_btn" type="button" class="btn btn-success disabled" onclick="savePicture()">Save</button>
   				</div>
- 				<div class="btn-group" role="group">
-  				  	<button type="button" class="btn btn-default" onclick="getInformation()">Shoot</button>
- 				</div>
+ 				  <div class="btn-group" role="group">
+  					<button type="button" class="btn btn-primary" onclick="getPicture()">Shoot</button>
+ 				  </div>
   				<div class="btn-group" role="group">
-    				<button type="button" class="btn btn-default" onclick="resetInformation()">Reset</button>
+    				<button type="button" class="btn btn-danger" onclick="resetInformation()">Reset</button>
  	    		</div>
- 			</div>
-		</div>
-
-	
+ 			  </div>
+		  </div>
     </div> <!-- /container -->
-    
+
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <!-- Script Geolocalisation -->
-    <script>
-    /*
-      var x=document.getElementById("demo");        
-      function getLocation() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(showPosition);
-        }
-        else {
-          x.innerHTML="Geolocation is not supported by this browser.";
-        }
-        }
-        function showPosition(position) {
-          x.innerHTML="Latitude: " + position.coords.latitude + "<br/>Longitude: " + position.coords.longitude;           
-        }*/
-      </script>
-      
-    <script>
-      var lat=document.getElementById("Latitude");
-      var lon=document.getElementById("Longitude");
-      var dat=document.getElementById("Date");
-
-     function exportAndSaveCanvas()  {
-	var screenshot = Canvas2Image.saveAsPNG(canvas, true);
-	canvas.parentNode.appendChild(screenshot);
-	screenshot.id = "canvasimage";		
-	data = $('#canvasimage').attr('src');
-	canvas.parentNode.removeChild(screenshot);
-	var url = 'paint/export_paint.php';
-	$.ajax({ 
-		type: "POST", 
-		url: url,
-		dataType: 'text',
-		data: {
-		    base64data : data
-		}
-	});
-}
-      function resetInformation() {
-                lat.value = "";
-                lon.value = "";
-                dat.value = "";
-      	}
-      function getInformation() {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(showInformation);
-       	 }else {
-          x.innerHTML="Geolocation is not supported by this browser.";
-        	}
-        }
-     function showInformation(position) {
-          date = new Date;
-          annee = date.getFullYear();
-          moi = date.getMonth();
-          mois = new Array('Janvier', 'F&eacute;vrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao&ucirc;t', 'Septembre', 'Octobre', 'Novembre', 'D&eacute;cembre');
-          j = date.getDate();
-          jour = date.getDay();
-          jours = new Array('Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi');
-          h = date.getHours();
-          if(h<10)
-          {
-                  h = "0"+h;
-          }
-          m = date.getMinutes();
-          if(m<10)
-          {
-                  m = "0"+m;
-          }
-          s = date.getSeconds();
-          if(s<10)
-          {
-                  s = "0"+s;
-          }
-
-          date_now = jours[jour]+' '+j+' '+mois[moi]+' '+annee+' - '+h+':'+m+':'+s;
-
-          lat.value= position.coords.latitude;
-          lon.value= position.coords.longitude;
-          dat.value= date_now;
-
-        }
-    
-      </script>
-    <!-- Script Canvas-->
-    <script>    
-      var canvas = document.getElementById("myCanvas");      
-      canvas.width=500;
-      canvas.height=300;
-      var ctx = canvas.getContext('2d');
-      ctx.fillStyle='#000000';
-      ctx.fillRect(20,20,canvas.width,canvas.height);
-    </script> 
     <script type="text/javascript" src="save.js"></script>
-
-  
-  
+    <script type="text/javascript" src="resetInformation.js"></script>
+    <script type="text/javascript" src="showInformation.js"></script>
+    <script type="text/javascript" src="getPicture.js"></script>
+    <script type="text/javascript" src="addTarget.js"></script>
+    <script type="text/javascript" src="initCanvas.js"></script>
   </body>
 </html>
