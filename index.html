@@ -20,6 +20,12 @@
 		<!-- Affichage des informations de localisation et date -->
     	<div class="col-md-6 col-md-offset-3">
     		<div class="row">
+    		    <div class="embed-responsive embed-responsive-16by9">
+    				<br/><h1>Canvas</h1><br/>
+   		   			<canvas id="myCanvas"></canvas>  
+   		   		</div>
+    		</div>
+    		<div class="row">
     			<label for="informations">Informations</label>
 				<div class="input-group">
  					 <span class="input-group-addon" id="basic-addon3">Latitude</span>
@@ -59,7 +65,6 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Script Geolocalisation -->
-
     <script>
       var x=document.getElementById("demo");        
       function getLocation() {
@@ -74,6 +79,18 @@
           x.innerHTML="Latitude: " + position.coords.latitude + "<br/>Longitude: " + position.coords.longitude;           
         }
       </script>
+    <!-- Script Canvas-->
+    <script>    
+      var canvas = document.getElementById("myCanvas");      
+      canvas.width=500;
+      canvas.height=300;
+      var ctx = canvas.getContext('2d');
+      ctx.fillStyle='#000000';
+      ctx.fillRect(20,20,canvas.width,canvas.height);
+                 
+     
+    
+    </script> 
  
   </body>
 </html>
