@@ -1,0 +1,17 @@
+body {
+    background-color: powderblue;
+}
+
+Header{
+    color: #269A8A;
+    font-family: verdana;
+    font-size: 300%;
+}
+
+Footer{
+    color: #269A8A;
+    font-family: verdana;
+    display: block;
+    font-size: 200%;
+}
+}
