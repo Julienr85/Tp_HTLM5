@@ -14,11 +14,11 @@
   </head>
   <body>
 	<header id="Header">
-		<center><h1>Projet Camera Interface</h1></center>
+		<h1 class="text-center">Projet Camera Interface</h1>
 	</header>
 
     <div class="container">
-    	<div class="col-md-5 col-md-offset-3">
+    	<div class="col-md-6 col-md-offset-3">
 
         <!-- Affichage de la vidéo -->
     		<div class="row">
@@ -28,28 +28,35 @@
    		   		</div>
     		</div>
 
-    		<!-- Affichage des informations de localisation et date -->
+        <!-- Affichage des informations de localisation et date -->
     		<div class="row">
-    			<label for="informations"></label>
-				<div class="input-group">
- 					 <span class="input-group-addon" id="basic-addon3">Latitude</span>
-  			 	 <input type="text"  disabled class="form-control" id="Latitude" aria-describedby="basic-addon3">
-				</div>
-				<div class="input-group">
- 					 <span class="input-group-addon" id="basic-addon3">Longitude</span>
-  			 	 <input type="text"  disabled class="form-control" id="Longitude" aria-describedby="basic-addon3">
-				</div>
-				<div class="input-group">
- 					 <span class="input-group-addon" id="basic-addon3">Date/Heure</span>
-  			 	 <input type="text" disabled class="form-control" id="Date" aria-describedby="basic-addon3">
-				</div>
-		 	</div>
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label for="Latitude" class="col-sm-2 control-label">Latitude</label>
+              <div class="col-sm-10">
+                <input type="text" disabled class="form-control" id="Latitude" placeholder="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="Longitude" class="col-sm-2 control-label">Longitude</label>
+              <div class="col-sm-10">
+                <input type="text" disabled class="form-control" id="Longitude" placeholder="">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="Date" class="col-sm-2 control-label">Date/Heure</label>
+              <div class="col-sm-10">
+                <input type="text" disabled class="form-control" id="Date" placeholder="">
+              </div>
+            </div>
+          </form>
+		 	  </div>
 
       <!-- Les boutons -->
 			<div class="row">
 				<div class="btn-group btn-group-justified" role="group" aria-label="...">
   				<div class="btn-group" role="group">
-   					 <button id="save_btn" type="button" class="btn btn-success disabled" onclick="savePicture()">Save</button>
+   					 <button id="save" type="button" class="btn btn-success disabled">Save</button>
   				</div>
  				  <div class="btn-group" role="group">
   					<button type="button" class="btn btn-primary" onclick="getPicture()">Shoot</button>
@@ -60,7 +67,6 @@
  			  </div>
 		  </div>
     </div> <!-- /container -->
-
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
