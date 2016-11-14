@@ -1,9 +1,11 @@
 body {
-    background-color: powderblue;
+  background-color: #000;
 }
-
+label {
+  color: #CCC;
+}
 Header{
-    color: #269A8A;
+    color: #B40431;
     font-family: verdana;
     font-size: 300%;
 }
