@@ -5,5 +5,5 @@ function resetInformation() {
     document.getElementById("Date").value = "";
 
     video.play();
-    $("#save_btn").addClass('disabled');
+    $("#save").addClass('disabled');
 }
